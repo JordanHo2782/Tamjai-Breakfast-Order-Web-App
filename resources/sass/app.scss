@@ -1,0 +1,109 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+html, 
+body,
+#mainpage {
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.z-index-1 {
+    z-index: 1;
+}
+
+.z-index-2 {
+    z-index: 2;
+}
+
+.z-index-3 {
+    z-index: 3;
+}
+
+.z-index-4 {
+    z-index: 4;
+}
+
+.opacity-2 {
+    opacity: 0.2;
+}
+
+.opacity-5 {
+    opacity: 0.5;
+}
+
+
+.full-bg-image {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.tamjainoodles-bg-image {
+    background-image: url("../images/mixianbg.jpg");
+}
+
+.tamjailogo-bg-image {
+    background-image: url("../images/logo.png")
+}
+
+.tamjailogo-size {
+    height: min(5vmax, 51px);
+    width: min(22vmax, 225px);
+    margin-top: min(2vmax, 20.5vmax);
+    margin-bottom: min(2vmax, 20.5vmax);
+}
+
+.change-setting-btn-size {
+    height: min(10vmax, 82px);
+    width: min(40vmax, 410px);
+    padding: min(2vmax, 20.5px) min(2vmax, 20.5px);
+    margin: min(1vmax, 10px);
+}
+
+.change-setting-btn-icon-size {
+    width: min(8vmax, 82px);
+    font-size: min(4vmax, 40px);
+}
+
+.change-setting-btn-label-size {
+    font-size: min(1vmax, 10px);
+}
+
+.change-setting-btn-setting-size {
+    height: min(8vmax, 82px);
+    width: min(20vmax, 204px);
+    font-size: min(2vmax, 20px);
+}
+
+.change-setting-manual {
+    height: min(75%, 768px);
+    width: min(75%, 576px);
+    top: max(12.5%, calc((100vh - 768px)/2));
+    left: max(12.5%, calc((100vw - 576px)/2));
+    overflow: scroll;
+}
+
+.change-setting-manual-label {
+    height: min(10vmax, 77px);
+    padding: min(2vmax, 16px);
+    font-size: min(4vmax, 41px);
+}
+
+.change-setting-manual-option {
+    padding: min(2vmax, 16px);
+    font-size: min(3vmax, 23px);
+}
+
+
+
