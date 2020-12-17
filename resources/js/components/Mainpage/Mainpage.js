@@ -145,7 +145,7 @@ export default function Mainpage() {
                     {Language.EnglishWord==="English"?"Start Order":"開始點餐"}
                 </button>
             </div>
-            <div className={LanguageManualOpened||DineLocationManualOpened||RestaurantManualOpened||SitNumberManaulOpened?"h-100 w-100 position-absolute justify-content-center align-items-center bg-dark z-index-3 opacity-5 d-flex":"d-none"}></div>
+            <div className={`w-100 position-absolute justify-content-center align-items-center bg-dark z-index-3 opacity-5 d-flex menu-transition ${LanguageManualOpened||DineLocationManualOpened||RestaurantManualOpened||SitNumberManaulOpened?"menu-opened-margin":"menu-closed-margin"}`}/>
             <ChangeSettingManual
                 Label={new Word("Language", "語言").Translator(Language.EnglishWord)}
                 Options={LanguageOptions.map((Option)=>{
@@ -213,8 +213,4 @@ export default function Mainpage() {
             />
         </div>
     )
-}
-
-if (document.getElementById('mainpage')) {
-    ReactDOM.render(<Mainpage />, document.getElementById('mainpage'));
 }

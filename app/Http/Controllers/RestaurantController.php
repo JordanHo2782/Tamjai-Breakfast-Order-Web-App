@@ -12,7 +12,7 @@ class RestaurantController extends Controller
     }
     //return row with specified id
     public function show_by_id($id){
-        return Restaurant::where('id', $id)->get();
+        return Restaurant::where('restaurant_id', $id)->get();
     }
 
     public function show_by_english_name($english_name){

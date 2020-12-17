@@ -14,12 +14,12 @@ class CreateRestaurantsTable extends Migration
     public function up()
     {
         Schema::create('restaurants', function (Blueprint $table) {
-            $table->id('id');
+            $table->bigIncrements('restaurant_id');
             $table->string('english_name');
             $table->string('traditional_chinese_name');
             $table->integer('sit_number');
-            $table->double('x_coordinate', 16, 12);
-            $table->double('y_coordinate', 16, 12);
+            $table->double('x_coordinate', 18, 14);
+            $table->double('y_coordinate', 18, 14);
         });
     }
     /**

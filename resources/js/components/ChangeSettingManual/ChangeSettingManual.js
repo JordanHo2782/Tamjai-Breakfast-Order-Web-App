@@ -4,11 +4,10 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons'
 
 export default function ChangeSettingManual(props) {
     const InputElement = useRef(null);
-
-
+    
     return (
-    <div className={props.ManualOpened?"change-setting-manual position-absolute bg-white z-index-4 d-flex flex-column align-items-center rounded rounded-lg":"d-none"}>
-        <div className="change-setting-manual-label w-100 d-flex justify-content-center align-items-center">{props.Label}</div>
+    <div className={`${props.ManualOpened?"change-setting-manual-opened":"change-setting-manual-closed"} menu-transition change-setting-manual overflow-scroll position-absolute bg-white z-index-4 d-flex flex-column align-items-center rounded rounded-lg`}>
+        <div className="change-setting-manual-label w-100 d-flex justify-content-center align-items-center ">{props.Label}</div>
         <input type="text" className="form-control change-setting-manual-option w-75" placeholder={props.SearchLabel} ref={InputElement} onInput={()=>{
             props.Options.map((Option, OptionIndex)=>{
 
@@ -16,7 +15,6 @@ export default function ChangeSettingManual(props) {
                 const SearchResult = Option.toString().search(InputElement.current.value)//[3123,3,2,2,-1 ...] -1 for dont exist,
                 if(SearchResult===-1){
                     document.getElementById(`option${OptionIndex}`).className = "d-none";
-                    //document.getElementById(`option${OptionIndex}`).style.display="none !important";
                     console.log(document.getElementById(`option${OptionIndex}`).style)
                 }
             })
