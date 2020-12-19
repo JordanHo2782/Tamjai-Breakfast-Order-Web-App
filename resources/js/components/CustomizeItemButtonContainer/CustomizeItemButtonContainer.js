@@ -7,10 +7,10 @@ export default function CustomizeItemButtonContainer(props) {
 
         {
             props.ProductOptions!==undefined && props.ProductOptions.map((Option)=>{
-                return <CustomizeItemButton 
-                CustomizeItemButtonClickedChange={props.CustomizeItemButtonClickedChange}
-                onCustomizeItemButtonClickedChange={(prevState)=>{
-                    props.onCustomizeItemButtonClickedChange(prevState)}}/>
+                return <CustomizeItemButton
+                            CustomizeItemButtonClickedChange={props.CustomizeItemButtonClickedChange}
+                            onCustomizeItemButtonClickedChange={(prevState)=>{
+                                props.onCustomizeItemButtonClickedChange(prevState)}}/>
             })
         }
     </div>

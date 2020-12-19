@@ -11336,7 +11336,6 @@ body,
 }
 
 .product-menu-navbar {
-  height: min(8vmax, 80px);
   padding: min(1vmax, 10px);
   font-size: min(2vmax, 20px);
 }
@@ -11345,6 +11344,7 @@ body,
   height: min(5vmax, 50px);
   width: min(12vmax, 85px);
   margin: 0 min(0.5vmax, 5px);
+  font-size: min(1vmax, 10px);
   transition: background-color 0.1s, color 0.1s;
 }
 

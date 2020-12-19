@@ -13,7 +13,7 @@ export default function ProductCategoriesPage(props) {
 
     useEffect(()=>{
         const setProductCategories = async()=>{
-            var ProductCategoriesJSON = await fetch(`/api/get/categories/${CategoryID}`).then((response)=>{return response.json()});
+            var ProductCategoriesJSON = await fetch(`/api/get/product/${CategoryID}`).then((response)=>{return response.json()});
             if(ProductCategoriesJSON.length<=0){
                 ProductCategoriesJSON = await fetch("/api/get/categories/").then((response)=>{return response.json()});
             }

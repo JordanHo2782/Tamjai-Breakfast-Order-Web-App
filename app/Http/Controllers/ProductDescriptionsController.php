@@ -11,7 +11,7 @@ class ProductDescriptionsController extends Controller
         return ProductDescriptions::all();
     }
 
-    public function show_by_id($id){
-        return ProductDescriptions::where('product_id', $id)->get();
+    public function show_by_product_id($category_id, $product_id){
+        return ProductDescriptions::where('product_id', $product_id)->get();
     }
 }

@@ -11,22 +11,37 @@ export default function ProductPage(props) {
     const [SearchButtonClicked, setSearchButtonClicked] = useState(false)
     const [SearchBarInput, setSearchBarInput] = useState("")
     const [CustomizeItemButtonClicked, setCustomizeItemButtonClicked] = useState(false)
+
     const [ProductDetails, setProductDetails] = useState([])
+    const [ProductOptions, setProductOptions] = useState([])
+
+    const [OptionsSelected, setOptionsSelected] = useState("Mini Noodle Options");
+    const [ItemsSelected, setItemsSelected] = useState({});  
 
     const { CategoryID, ProductID } = useParams();
 
     useEffect(()=>{
-        const setProductCategories = async()=>{
-            var ProductCategoriesJSON = await fetch(`/api/get/categories/${CategoryID}/${ProductID}`).then((response)=>{return response.json()});
+        const FetchProductDetails = async()=>{
+            var ProductCategoriesJSON = await fetch(`/api/get/product/${CategoryID}/${ProductID}`).then((response)=>{return response.json()});
             setProductDetails(ProductCategoriesJSON[0])
-            console.log(ProductCategoriesJSON[0])
         }
-        setProductCategories()
+        const FetchProductOptions = async()=>{
+            var ProductOptionsJSON = await fetch(`/api/get/product_options/${CategoryID}/${ProductID}`).then((response)=>{return response.json()});
+            setProductOptions(ProductOptionsJSON);
+        }
+        FetchProductDetails();
+        FetchProductOptions();
+
     },[])
     
     return (
         <div className="w-100">
-            <CustomizeMenu CustomizeItemButtonClickedChange={CustomizeItemButtonClicked}/>
+            <CustomizeMenu 
+                CustomizeItemButtonClickedChange={CustomizeItemButtonClicked} 
+                onCustomizeItemButtonClickedChangeChange={(newState)=>{
+                    setCustomizeItemButtonClicked(newState)
+                }}
+                ProductOptions={ProductOptions}/>
             <div
                 className="h-100 w-100 overflow-scroll position-absolute d-flex flex-column align-items-center z-index-3">
                 <Navbar
@@ -44,6 +59,7 @@ export default function ProductPage(props) {
                     onCustomizeItemButtonClickedChange={(newState)=>{
                         setCustomizeItemButtonClicked(newState)}}
                     ProductDetails={ProductDetails}
+                    ProductOptions={ProductOptions}
                 />
 
             </div>
