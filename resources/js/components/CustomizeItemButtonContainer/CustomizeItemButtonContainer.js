@@ -3,12 +3,14 @@ import CustomizeItemButton from "../CustomizeItemButton/CustomizeItemButton"
 
 export default function CustomizeItemButtonContainer(props) {
     return (
-    <div className="product-customization-container">
-
+    <div className="product-customization-container d-flex justify-content-center">
         {
-            props.ProductOptions!==undefined && props.ProductOptions.map((Option)=>{
+            props.CustomizeItemButtonLeftPlaceholdersArray!==undefined && props.CustomizeItemButtonLeftPlaceholdersArray.map((LeftPlaceholder)=>{
+                const RightPlaceholder = props.CustomizeItemButtonRightPlaceholdersArray[props.CustomizeItemButtonLeftPlaceholdersArray.indexOf(LeftPlaceholder)];
                 return <CustomizeItemButton
-                            CustomizeItemButtonClickedChange={props.CustomizeItemButtonClickedChange}
+                            key={props.CustomizeItemButtonLeftPlaceholdersArray.indexOf(LeftPlaceholder)}
+                            LeftPlaceholder={LeftPlaceholder}
+                            RightPlaceholder={!!RightPlaceholder?RightPlaceholder:"Please Select"}
                             onCustomizeItemButtonClickedChange={(prevState)=>{
                                 props.onCustomizeItemButtonClickedChange(prevState)}}/>
             })

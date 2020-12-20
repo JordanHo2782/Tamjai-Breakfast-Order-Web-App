@@ -81004,30 +81004,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CustomizeItemButton; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 function CustomizeItemButton(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
-      _useState2 = _slicedToArray(_useState, 2),
-      CustomizeItemButtonLeftPlaceholder = _useState2[0],
-      setCustomizeItemButtonLeftPlaceholder = _useState2[1];
-
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("Please Select"),
-      _useState4 = _slicedToArray(_useState3, 2),
-      CustomizeItemButtonRightPlaceholder = _useState4[0],
-      setCustomizeItemButtonRightPlaceholder = _useState4[1];
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "customize-item-button d-flex justify-content-between align-items-center cursor-pointer border-bottom",
     onClick: function onClick() {
@@ -81035,9 +81013,9 @@ function CustomizeItemButton(props) {
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "customize-item-button-text m-0"
-  }, CustomizeItemButtonLeftPlaceholder), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, props.LeftPlaceholder), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "customize-item-button-text m-0"
-  }, CustomizeItemButtonRightPlaceholder));
+  }, props.RightPlaceholder));
 }
 
 /***/ }),
@@ -81059,10 +81037,13 @@ __webpack_require__.r(__webpack_exports__);
 
 function CustomizeItemButtonContainer(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "product-customization-container"
-  }, props.ProductOptions !== undefined && props.ProductOptions.map(function (Option) {
+    className: "product-customization-container d-flex justify-content-center"
+  }, props.CustomizeItemButtonLeftPlaceholdersArray !== undefined && props.CustomizeItemButtonLeftPlaceholdersArray.map(function (LeftPlaceholder) {
+    var RightPlaceholder = props.CustomizeItemButtonRightPlaceholdersArray[props.CustomizeItemButtonLeftPlaceholdersArray.indexOf(LeftPlaceholder)];
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CustomizeItemButton_CustomizeItemButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      CustomizeItemButtonClickedChange: props.CustomizeItemButtonClickedChange,
+      key: props.CustomizeItemButtonLeftPlaceholdersArray.indexOf(LeftPlaceholder),
+      LeftPlaceholder: LeftPlaceholder,
+      RightPlaceholder: !!RightPlaceholder ? RightPlaceholder : "Please Select",
       onCustomizeItemButtonClickedChange: function onCustomizeItemButtonClickedChange(prevState) {
         props.onCustomizeItemButtonClickedChange(prevState);
       }
@@ -81108,28 +81089,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function CustomizeMenu(props) {
-  var OptionNames = props.ProductOptions.map(function (Option) {
-    return Option.english_name;
-  });
-  var OptionArrays = props.ProductOptions.map(function (Option) {
-    return Option.product_options;
-  });
-
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("Mini Noodle Options"),
       _useState2 = _slicedToArray(_useState, 2),
-      OptionsSelected = _useState2[0],
-      setOptionsSelected = _useState2[1]; //For Each Items create state, which determine the Option selected
-
-
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
-      _useState4 = _slicedToArray(_useState3, 2),
-      ItemsSelected = _useState4[0],
-      setItemsSelected = _useState4[1];
-
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
-      _useState6 = _slicedToArray(_useState5, 2),
-      ProductMenuInput = _useState6[0],
-      setProductMenuInput = _useState6[1];
+      OptionsTapSelected = _useState2[0],
+      setOptionsTapSelected = _useState2[1];
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "".concat(props.CustomizeItemButtonClickedChange ? "product-menu-opened" : "product-menu-closed", " w-100 position-absolute z-index-4 bg-dark opacity-5 menu-transition")
@@ -81139,7 +81102,7 @@ function CustomizeMenu(props) {
     className: "w-100 d-flex justify-content-between align-items-center product-menu-navbar"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "m-0"
-  }, "Step ", OptionNames.indexOf(OptionsSelected) + 1, "/", OptionNames.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__["FontAwesomeIcon"], {
+  }, "Step ", props.OptionNamesArray.indexOf(OptionsTapSelected) + 1, "/", props.OptionNamesArray.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__["FontAwesomeIcon"], {
     className: "cursor-pointer customize-item-button-text",
     icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faTimes"],
     onClick: function onClick() {
@@ -81147,11 +81110,11 @@ function CustomizeMenu(props) {
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-100 d-flex align-items-center product-menu-navbar border-bottom"
-  }, OptionNames.map(function (Name) {
+  }, props.OptionNamesArray.map(function (Name) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "product-menu-navbar-customize-btn bg-color-transition-1 color-transition-1 pt-0 rounded-lg cursor-pointer d-flex justify-content-center align-items-center text-center ".concat(Name === OptionsSelected ? "bg-success text-light" : "bg-light text-dark"),
+      className: "product-menu-navbar-customize-btn bg-color-transition-1 color-transition-1 pt-0 rounded-lg cursor-pointer d-flex justify-content-center align-items-center text-center ".concat(Name === OptionsTapSelected ? "bg-success text-light" : "bg-light text-dark"),
       onClick: function onClick() {
-        setOptionsSelected(Name);
+        setOptionsTapSelected(Name);
       }
     }, Name);
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -81161,19 +81124,23 @@ function CustomizeMenu(props) {
     icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faCheck"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
     className: "mb-0 ml-2"
-  }, "Please Choose One")), OptionArrays.map(function (OptionArray) {
-    if (OptionArrays.indexOf(OptionArray) === OptionNames.indexOf(OptionsSelected)) {
+  }, "Please Choose One")), props.ProductOptionsArraysArray.map(function (OptionArray) {
+    if (props.ProductOptionsArraysArray.indexOf(OptionArray) === props.OptionNamesArray.indexOf(OptionsTapSelected)) {
       return OptionArray.map(function (Option) {
-        var OptionSelected = ItemsSelected[OptionsSelected] === undefined ? false : ItemsSelected[OptionsSelected].english_name === Option.english_name;
+        var OptionSelected = props.ItemsSelectedChanges[OptionsTapSelected] === undefined ? false : props.ItemsSelectedChanges[OptionsTapSelected].english_name === Option.english_name;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "w-100 d-flex justify-content-between align-items-center product-menu-navbar cursor-pointer",
           onClick: function onClick() {
-            var newItemsSelected = _objectSpread(_objectSpread({}, ItemsSelected), {}, _defineProperty({}, OptionsSelected, {
+            var NewItemsSelected = _objectSpread(_objectSpread({}, props.ItemsSelectedChanges), {}, _defineProperty({}, OptionsTapSelected, {
               english_name: Option.english_name,
               price_change: Option.price_change
             }));
 
-            setItemsSelected(newItemsSelected);
+            props.onItemsSelectedChanges(NewItemsSelected);
+
+            if (props.ProductOptionsArraysArray.indexOf(OptionArray) === props.ProductOptionsArraysArray.length - 1) {
+              props.onCustomizeItemButtonClickedChangeChange(false);
+            }
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "border border-success product-menu-rounded-checked-icon d-flex justify-content-center align-items-center \n                                            ".concat(OptionSelected ? "bg-success" : "bg-white")
@@ -81680,12 +81647,13 @@ function Navbar(props) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "navbar-icon-container-size d-flex flex-row justify-content-around align-items-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__["FontAwesomeIcon"], {
-    className: "navbar-icon navbar-mobile-display cursor-pointer ",
+    className: "navbar-icon navbar-mobile-display cursor-pointer ".concat(!!props.DisableSearch ? "d-none" : ""),
     icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faSearch"],
     onClick: function onClick() {
       props.onSearchButtonClickedChange(props.SearchButtonClickedChange);
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SearchInputDesktop_SearchInputDesktop__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    DisableSearch: !!props.DisableSearch,
     onSearchBarInputChange: function onSearchBarInputChange(newState) {
       props.onSearchBarInputChange(newState);
     }
@@ -81859,54 +81827,6 @@ function ProductDescriptionsContainer(props) {
 
 /***/ }),
 
-/***/ "./resources/js/components/ProductDetailsContainer/ProductDetailsContainer.js":
-/*!************************************************************************************!*\
-  !*** ./resources/js/components/ProductDetailsContainer/ProductDetailsContainer.js ***!
-  \************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ProductDetailsContainer; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _CustomizeItemButton_CustomizeItemButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../CustomizeItemButton/CustomizeItemButton */ "./resources/js/components/CustomizeItemButton/CustomizeItemButton.js");
-/* harmony import */ var _ProductDescriptionsContainer_ProductDescriptionsContainer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ProductDescriptionsContainer/ProductDescriptionsContainer */ "./resources/js/components/ProductDescriptionsContainer/ProductDescriptionsContainer.js");
-/* harmony import */ var _CustomizeItemButtonContainer_CustomizeItemButtonContainer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../CustomizeItemButtonContainer/CustomizeItemButtonContainer */ "./resources/js/components/CustomizeItemButtonContainer/CustomizeItemButtonContainer.js");
-
-
-
-
-function ProductDetailsContainer(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "w-100 p-0"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "product-description-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "product-photo"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    className: "h-100 w-100",
-    src: "/api/get/image/".concat(props.ProductDetails.photo_link)
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "product-title d-flex justify-content-between align-items-center border-bottom"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-    className: "m-0"
-  }, props.ProductDetails.english_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-    className: "m-0"
-  }, "$", props.ProductDetails.price)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProductDescriptionsContainer_ProductDescriptionsContainer__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    ProductDescriptions: props.ProductDetails.product_descriptions
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CustomizeItemButtonContainer_CustomizeItemButtonContainer__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    ProductOptions: props.ProductOptions,
-    CustomizeItemButtonClickedChange: props.CustomizeItemButtonClickedChange,
-    onCustomizeItemButtonClickedChange: function onCustomizeItemButtonClickedChange(prevState) {
-      props.onCustomizeItemButtonClickedChange(prevState);
-    }
-  }));
-}
-
-/***/ }),
-
 /***/ "./resources/js/components/ProductPage/ProductPage.js":
 /*!************************************************************!*\
   !*** ./resources/js/components/ProductPage/ProductPage.js ***!
@@ -81925,7 +81845,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Navbar_Navbar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Navbar/Navbar */ "./resources/js/components/Navbar/Navbar.js");
 /* harmony import */ var _SearchBarMobile_SearchBarMobile__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../SearchBarMobile/SearchBarMobile */ "./resources/js/components/SearchBarMobile/SearchBarMobile.js");
 /* harmony import */ var _CustomizeMenu_CustomizeMenu__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../CustomizeMenu/CustomizeMenu */ "./resources/js/components/CustomizeMenu/CustomizeMenu.js");
-/* harmony import */ var _ProductDetailsContainer_ProductDetailsContainer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../ProductDetailsContainer/ProductDetailsContainer */ "./resources/js/components/ProductDetailsContainer/ProductDetailsContainer.js");
+/* harmony import */ var _ProductDescriptionsContainer_ProductDescriptionsContainer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../ProductDescriptionsContainer/ProductDescriptionsContainer */ "./resources/js/components/ProductDescriptionsContainer/ProductDescriptionsContainer.js");
+/* harmony import */ var _CustomizeItemButtonContainer_CustomizeItemButtonContainer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../CustomizeItemButtonContainer/CustomizeItemButtonContainer */ "./resources/js/components/CustomizeItemButtonContainer/CustomizeItemButtonContainer.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -81950,6 +81871,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function ProductPage(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -81966,38 +81888,64 @@ function ProductPage(props) {
       CustomizeItemButtonClicked = _useState6[0],
       setCustomizeItemButtonClicked = _useState6[1];
 
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
       _useState8 = _slicedToArray(_useState7, 2),
-      ProductDetails = _useState8[0],
-      setProductDetails = _useState8[1];
+      ProductTitle = _useState8[0],
+      setProductTitle = _useState8[1];
 
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(0),
       _useState10 = _slicedToArray(_useState9, 2),
-      ProductOptions = _useState10[0],
-      setProductOptions = _useState10[1];
+      ProductPrice = _useState10[0],
+      setProductPrice = _useState10[1];
+
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
+      _useState12 = _slicedToArray(_useState11, 2),
+      ProductPhotoLink = _useState12[0],
+      setProductPhotoLink = _useState12[1];
+
+  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+      _useState14 = _slicedToArray(_useState13, 2),
+      ProductDescriptions = _useState14[0],
+      setProductDescriptions = _useState14[1];
+
+  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+      _useState16 = _slicedToArray(_useState15, 2),
+      ProductOptionsListNamesArray = _useState16[0],
+      setProductOptionsListNamesArray = _useState16[1];
+
+  var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+      _useState18 = _slicedToArray(_useState17, 2),
+      ProductOptionsArraysArray = _useState18[0],
+      setProductOptionsArraysArray = _useState18[1];
+
+  var _useState19 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({}),
+      _useState20 = _slicedToArray(_useState19, 2),
+      ItemsSelected = _useState20[0],
+      setItemsSelected = _useState20[1];
 
   var _useParams = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["useParams"])(),
       CategoryID = _useParams.CategoryID,
       ProductID = _useParams.ProductID;
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    var FetchProductDetails = /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var ProductCategoriesJSON;
+    var FetchDataAndSetState = /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(Link, ModifyJSONFunction, SetStateFunction) {
+        var JSONData, DataModified;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return fetch("/api/get/product/".concat(CategoryID, "/").concat(ProductID)).then(function (response) {
+                return fetch(Link).then(function (response) {
                   return response.json();
                 });
 
               case 2:
-                ProductCategoriesJSON = _context.sent;
-                setProductDetails(ProductCategoriesJSON[0]);
+                JSONData = _context.sent;
+                DataModified = ModifyJSONFunction(JSONData);
+                SetStateFunction(DataModified);
 
-              case 4:
+              case 5:
               case "end":
                 return _context.stop();
             }
@@ -82005,43 +81953,41 @@ function ProductPage(props) {
         }, _callee);
       }));
 
-      return function FetchProductDetails() {
+      return function FetchDataAndSetState(_x, _x2, _x3) {
         return _ref.apply(this, arguments);
       };
     }();
 
-    var FetchProductOptions = /*#__PURE__*/function () {
-      var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var ProductOptionsJSON;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _context2.next = 2;
-                return fetch("/api/get/product_options/".concat(CategoryID, "/").concat(ProductID)).then(function (response) {
-                  return response.json();
-                });
-
-              case 2:
-                ProductOptionsJSON = _context2.sent;
-                setProductOptions(ProductOptionsJSON);
-
-              case 4:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }));
-
-      return function FetchProductOptions() {
-        return _ref2.apply(this, arguments);
-      };
-    }();
-
-    FetchProductDetails();
-    FetchProductOptions();
+    FetchDataAndSetState("/api/get/product/".concat(CategoryID, "/").concat(ProductID), function (Data) {
+      Data = Data[0];
+      return [Data.english_name, Data.photo_link, Data.price, Data.product_descriptions];
+    }, function (DataModified) {
+      setProductTitle(DataModified[0]);
+      setProductPhotoLink(DataModified[1]);
+      setProductPrice(DataModified[2]);
+      setProductDescriptions(DataModified[3]);
+    });
+    FetchDataAndSetState("/api/get/product_options/".concat(CategoryID, "/").concat(ProductID), function (Data) {
+      return [Data.map(function (Datum) {
+        return Datum.english_name;
+      }), Data.map(function (Datum) {
+        return Datum.product_options;
+      })];
+    }, function (DataModified) {
+      setProductOptionsListNamesArray(DataModified[0]);
+      setProductOptionsArraysArray(DataModified[1]);
+    });
   }, []);
+
+  var ProductOptionsChoosenArray = function ProductOptionsChoosenArray() {
+    var ProductOptionsSelectedListNamesArray = [];
+    Object.entries(ItemsSelected).map(function (Item) {
+      Item[1].english_name;
+      ProductOptionsSelectedListNamesArray[ProductOptionsListNamesArray.indexOf(Item[0])] = Item[1].english_name;
+    });
+    return ProductOptionsSelectedListNamesArray;
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "w-100"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_CustomizeMenu_CustomizeMenu__WEBPACK_IMPORTED_MODULE_5__["default"], {
@@ -82049,30 +81995,46 @@ function ProductPage(props) {
     onCustomizeItemButtonClickedChangeChange: function onCustomizeItemButtonClickedChangeChange(newState) {
       setCustomizeItemButtonClicked(newState);
     },
-    ProductOptions: ProductOptions
+    ProductOptionsArraysArray: ProductOptionsArraysArray,
+    OptionNamesArray: ProductOptionsListNamesArray,
+    ItemsSelectedChanges: ItemsSelected,
+    onItemsSelectedChanges: function onItemsSelectedChanges(newState) {
+      setItemsSelected(newState);
+    }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "h-100 w-100 overflow-scroll position-absolute d-flex flex-column align-items-center z-index-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Navbar_Navbar__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    SearchButtonClickedChange: SearchButtonClicked,
-    onSearchButtonClickedChange: function onSearchButtonClickedChange(prevProps) {
-      setSearchButtonClicked(!prevProps);
-    },
-    onSearchBarInputChange: function onSearchBarInputChange(newState) {
-      setSearchBarInput(newState);
-    }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_SearchBarMobile_SearchBarMobile__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    SearchButtonClickedChange: SearchButtonClicked,
-    onSearchBarInputChange: function onSearchBarInputChange(newState) {
-      setSearchBarInput(newState);
-    }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ProductDetailsContainer_ProductDetailsContainer__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    DisableSearch: true
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "w-100 p-0"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "product-description-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "product-photo"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+    className: "h-100 w-100",
+    src: "/api/get/image/".concat(ProductPhotoLink)
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "product-title d-flex justify-content-between align-items-center border-bottom"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", {
+    className: "m-0"
+  }, ProductTitle), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", {
+    className: "m-0"
+  }, "$", ProductPrice)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ProductDescriptionsContainer_ProductDescriptionsContainer__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    ProductDescriptions: ProductDescriptions
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_CustomizeItemButtonContainer_CustomizeItemButtonContainer__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    CustomizeItemButtonLeftPlaceholdersArray: ProductOptionsListNamesArray,
+    CustomizeItemButtonRightPlaceholdersArray: ProductOptionsChoosenArray(),
     CustomizeItemButtonClickedChange: CustomizeItemButtonClicked,
-    onCustomizeItemButtonClickedChange: function onCustomizeItemButtonClickedChange(newState) {
-      setCustomizeItemButtonClicked(newState);
-    },
-    ProductDetails: ProductDetails,
-    ProductOptions: ProductOptions
-  })));
+    onCustomizeItemButtonClickedChange: function onCustomizeItemButtonClickedChange(prevState) {
+      setCustomizeItemButtonClicked(prevState);
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "d-flex justify-content-center align-items-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    type: "button",
+    "class": "btn btn-outline-success checkout-btn"
+  }, "CHECKOUT"))));
 }
 
 /***/ }),
@@ -82127,7 +82089,7 @@ __webpack_require__.r(__webpack_exports__);
 function SearchInputDesktop(props) {
   var InputEl = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "input-group search-input"
+    className: "input-group search-input ".concat(props.DisableSearch ? "d-none" : "")
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
     className: "form-control",

@@ -3,25 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 export default function CustomizeMenu(props) {
-    const OptionNames = props.ProductOptions.map((Option)=>{
-        return Option.english_name;
-    })
-    const OptionArrays = props.ProductOptions.map((Option)=>{
-        return Option.product_options;
-    })
-
-    const [OptionsSelected, setOptionsSelected] = useState("Mini Noodle Options")
-    //For Each Items create state, which determine the Option selected
-    
-    const [ItemsSelected, setItemsSelected] = useState({});
-
+    const [OptionsTapSelected, setOptionsTapSelected] = useState("Mini Noodle Options")
     return (
         <React.Fragment>
             <div className={`${props.CustomizeItemButtonClickedChange?"product-menu-opened":"product-menu-closed"} w-100 position-absolute z-index-4 bg-dark opacity-5 menu-transition`}>
             </div>
             <div className={`${props.CustomizeItemButtonClickedChange?"change-setting-manual-opened":"change-setting-manual-closed"} menu-transition change-setting-manual overflow-scroll position-absolute bg-white z-index-5 d-flex flex-column align-items-center rounded rounded-lg`}>
                 <div className="w-100 d-flex justify-content-between align-items-center product-menu-navbar">
-                    <p className="m-0">Step {OptionNames.indexOf(OptionsSelected)+1}/{OptionNames.length}</p>
+                    <p className="m-0">Step {props.OptionNamesArray.indexOf(OptionsTapSelected)+1}/{props.OptionNamesArray.length}</p>
                     <FontAwesomeIcon
                         className="cursor-pointer customize-item-button-text"
                         icon={faTimes} 
@@ -30,12 +19,12 @@ export default function CustomizeMenu(props) {
                 </div>
                 <div className="w-100 d-flex align-items-center product-menu-navbar border-bottom">
                     {
-                        OptionNames.map((Name)=>{
+                        props.OptionNamesArray.map((Name)=>{
                             return (
                                 <div 
-                                    className={`product-menu-navbar-customize-btn bg-color-transition-1 color-transition-1 pt-0 rounded-lg cursor-pointer d-flex justify-content-center align-items-center text-center ${Name===OptionsSelected?"bg-success text-light":"bg-light text-dark"}`}
+                                    className={`product-menu-navbar-customize-btn bg-color-transition-1 color-transition-1 pt-0 rounded-lg cursor-pointer d-flex justify-content-center align-items-center text-center ${Name===OptionsTapSelected?"bg-success text-light":"bg-light text-dark"}`}
                                     onClick={()=>{
-                                        setOptionsSelected(Name)
+                                        setOptionsTapSelected(Name)
                                     }}>
                                     {Name}
                                 </div>
@@ -48,14 +37,17 @@ export default function CustomizeMenu(props) {
                     <h5 className="mb-0 ml-2">Please Choose One</h5>
                 </div>
                 {
-                    OptionArrays.map((OptionArray)=>{
-                        if(OptionArrays.indexOf(OptionArray)===OptionNames.indexOf(OptionsSelected)){
+                    props.ProductOptionsArraysArray.map((OptionArray)=>{
+                        if(props.ProductOptionsArraysArray.indexOf(OptionArray)===props.OptionNamesArray.indexOf(OptionsTapSelected)){
                             return OptionArray.map((Option)=>{
-                                var OptionSelected = ItemsSelected[OptionsSelected]===undefined?false:ItemsSelected[OptionsSelected].english_name===Option.english_name;
+                                var OptionSelected = props.ItemsSelectedChanges[OptionsTapSelected]===undefined?false:props.ItemsSelectedChanges[OptionsTapSelected].english_name===Option.english_name;
                                 return (
                                     <div className="w-100 d-flex justify-content-between align-items-center product-menu-navbar cursor-pointer" onClick={()=>{
-                                            const NewItemsSelected = {...ItemsSelected, [OptionsSelected]:{english_name: Option.english_name, price_change: Option.price_change}};
-                                            setItemsSelected(NewItemsSelected);
+                                            const NewItemsSelected = {...props.ItemsSelectedChanges, [OptionsTapSelected]:{english_name: Option.english_name, price_change: Option.price_change}};
+                                            props.onItemsSelectedChanges(NewItemsSelected);
+                                            if(props.ProductOptionsArraysArray.indexOf(OptionArray)===props.ProductOptionsArraysArray.length-1){
+                                                props.onCustomizeItemButtonClickedChangeChange(false)
+                                            }
                                     }}>
                                         <div 
                                             className={`border border-success product-menu-rounded-checked-icon d-flex justify-content-center align-items-center 

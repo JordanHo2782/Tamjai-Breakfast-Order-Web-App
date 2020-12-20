@@ -18,11 +18,11 @@ export default function Navbar(props) {
                 <div className="navbar-icon-container-size d-flex flex-row justify-content-around align-items-center">
 
                     
-                    <FontAwesomeIcon className={"navbar-icon navbar-mobile-display cursor-pointer "} icon={faSearch} onClick={()=>{
+                    <FontAwesomeIcon className={`navbar-icon navbar-mobile-display cursor-pointer ${!!props.DisableSearch?"d-none":""}`} icon={faSearch} onClick={()=>{
                         props.onSearchButtonClickedChange(props.SearchButtonClickedChange)
                     }}/>
 
-                    <SearchInputDesktop onSearchBarInputChange={(newState)=>{props.onSearchBarInputChange(newState)}}/>
+                    <SearchInputDesktop DisableSearch={!!props.DisableSearch} onSearchBarInputChange={(newState)=>{props.onSearchBarInputChange(newState)}}/>
                     
                     <FontAwesomeIcon className="navbar-icon cursor-pointer" icon={faShoppingCart} onClick={()=>{
                         window.location.href="/"
