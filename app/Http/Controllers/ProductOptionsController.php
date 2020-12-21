@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 class ProductOptionsController extends Controller {
     public function show_by_product_id($category_id, $product_id){
         $product_options_had_and_had_not = ProductOptions::where('product_id', $product_id)->get()->toArray()[0];
-        $product_options_had_and_had_not_without_id = array_slice($product_options_had_and_had_not, 3, sizeof($product_options_had_and_had_not)-2);
+        $product_options_had_and_had_not_without_id = array_slice($product_options_had_and_had_not, 2, sizeof($product_options_had_and_had_not)-2);
         $product_options_had_without_id = array_filter($product_options_had_and_had_not_without_id, function($have_option){ return $have_option; });
         $product_options_key_had_without_id = array_keys($product_options_had_without_id);
         $product_options_model_names = array_map(function($key){ return Str::studly(Str::singular($key))."s";}, $product_options_key_had_without_id);

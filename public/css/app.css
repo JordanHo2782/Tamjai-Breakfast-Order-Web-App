@@ -11135,7 +11135,7 @@ body,
     font-size: min(3vmax, 15.36px);
   }
 
-  .checkout-btn {
+  .addcart-btn {
     height: min(6vmax, 60px);
     margin: min(2vmax, 20px);
     width: min(calc(100vw - 4vmax), calc(100vw - 40px));
@@ -11234,7 +11234,7 @@ body,
     font-size: min(3vmax, 15.36px);
   }
 
-  .checkout-btn {
+  .addcart-btn {
     height: min(6vmax, 60px);
     margin: min(2vmax, 20px);
     width: min(72vmax, 720px);
@@ -11313,7 +11313,7 @@ body,
     font-size: min(3vmax, 15.36px);
   }
 
-  .checkout-btn {
+  .addcart-btn {
     height: min(6vmax, 60px);
     margin: min(2vmax, 20px);
     width: min(22vmax, 330px);

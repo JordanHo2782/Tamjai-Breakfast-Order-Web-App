@@ -7,6 +7,7 @@ import ShoppingPage from "./ShoppingPage/ShoppingPage"
 import ProductPage from "./ProductPage/ProductPage"
 
 import ProductCategoriesPage from "./ProductCategoriesPage/ProductCategoriesPage"
+import CartPage from './CartPage/CartPage';
 
 export default function App() {
 
@@ -21,6 +22,9 @@ export default function App() {
                 </Route>
                 <Route path="/product-categories/">
                     <ProductCategoriesPage/>
+                </Route>
+                <Route path="/cart">
+                    <CartPage/>
                 </Route>
                 <Route path="/">
                     <Mainpage/>

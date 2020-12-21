@@ -24,8 +24,8 @@ export default function Navbar(props) {
 
                     <SearchInputDesktop DisableSearch={!!props.DisableSearch} onSearchBarInputChange={(newState)=>{props.onSearchBarInputChange(newState)}}/>
                     
-                    <FontAwesomeIcon className="navbar-icon cursor-pointer" icon={faShoppingCart} onClick={()=>{
-                        window.location.href="/"
+                    <FontAwesomeIcon className={`navbar-icon cursor-pointer ${!!props.DisableCart?"d-none":""}`} icon={faShoppingCart} onClick={()=>{
+                        window.location.href="/cart"
                     }}/>
                 </div>
             </nav >

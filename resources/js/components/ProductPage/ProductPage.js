@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom"
 import Navbar from "../Navbar/Navbar"
-import SearchBarMobile from "../SearchBarMobile/SearchBarMobile"
 import CustomizeMenu from "../CustomizeMenu/CustomizeMenu"
 
 import ProductDescriptionsContainer from "../ProductDescriptionsContainer/ProductDescriptionsContainer";
 import CustomizeItemButtonContainer from "../CustomizeItemButtonContainer/CustomizeItemButtonContainer";
 
 export default function ProductPage(props) {
-
-    const [SearchButtonClicked, setSearchButtonClicked] = useState(false)
-    const [SearchBarInput, setSearchBarInput] = useState("")
     const [CustomizeItemButtonClicked, setCustomizeItemButtonClicked] = useState(false)
 
     const [ProductTitle, setProductTitle] = useState("");
@@ -58,6 +54,9 @@ export default function ProductPage(props) {
         })
         return ProductOptionsSelectedListNamesArray;
     }
+    const CalcAdditionalPrice = ()=>{
+        return Object.keys(ItemsSelected).length===0?0:(Object.values(ItemsSelected).map((object)=>{return object.price_change})).reduce((a,b)=>{ return a+b });
+    }
 
     return (
         <div className="w-100">
@@ -83,7 +82,7 @@ export default function ProductPage(props) {
                         </div>
                         <div className="product-title d-flex justify-content-between align-items-center border-bottom">
                             <h1 className="m-0">{ProductTitle}</h1>
-                            <h1 className="m-0">${ProductPrice}</h1>
+                            <h1 className="m-0">${ProductPrice + CalcAdditionalPrice() }</h1>
                         </div>
                         <ProductDescriptionsContainer ProductDescriptions={ProductDescriptions}/>
                     </div>
@@ -95,7 +94,7 @@ export default function ProductPage(props) {
                             setCustomizeItemButtonClicked(prevState)}}/>            
                     </div>
                     <div className="d-flex justify-content-center align-items-center">
-                        <button type="button" class="btn btn-outline-success checkout-btn">CHECKOUT</button>
+                        <button type="button" className="btn btn-outline-success addcart-btn">ADD TO CART</button>
                     </div>
                 </div>
             </div>
