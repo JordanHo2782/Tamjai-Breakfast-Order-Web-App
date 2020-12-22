@@ -94,7 +94,9 @@ export default function ProductPage(props) {
                             setCustomizeItemButtonClicked(prevState)}}/>            
                     </div>
                     <div className="d-flex justify-content-center align-items-center">
-                        <button type="button" className="btn btn-outline-success addcart-btn">ADD TO CART</button>
+                        <button type="button" className="btn btn-outline-success addcart-btn" onClick={()=>{
+                            console.log(ItemsSelected)
+                        }}>ADD TO CART</button>
                     </div>
                 </div>
             </div>

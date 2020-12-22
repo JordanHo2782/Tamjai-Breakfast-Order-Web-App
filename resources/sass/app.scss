@@ -15,11 +15,15 @@ body,
 }
 
 .cursor-pointer {
-    cursor: pointer;
+    cursor: pointer!important;
+}
+
+.cursor-text {
+    cursor: text!important;
 }
 
 .cursor-auto {
-    cursor: auto;
+    cursor: auto!important;
 }
 
 .overflow-scroll {
@@ -246,6 +250,10 @@ body,
         margin: min(2vmax, 20px);
         width: min(calc(100vw - 4vmax), calc(100vw - 40px))
     }
+
+    .cart-item-image {
+        display:none;
+    }
 }
 
 @media (min-width: 768px) {
@@ -349,6 +357,9 @@ body,
         width: min(72vmax, 720px);
     }
 
+    .cart-item-image {
+        width: max(10rem, 200px);
+    }
 
 }
 
@@ -430,6 +441,10 @@ body,
         height: min(6vmax, 60px);
         margin: min(2vmax, 20px);
         width: min(22vmax, 330px);
+    }
+
+    .cart-item-image {
+        width: max(10rem, 200px);
     }
 }
 

@@ -3,8 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 export default function CustomizeMenu(props) {
-    const [OptionsTapSelected, setOptionsTapSelected] = useState("Mini Noodle Options")
-    console.log(props.ProductOptionsArraysArray)
+    const [OptionsTapSelected, setOptionsTapSelected] = useState("Drink Options")
     return (
         <React.Fragment>
             <div className={`${props.CustomizeItemButtonClickedChange?"product-menu-opened":"product-menu-closed"} w-100 position-absolute z-index-4 bg-dark opacity-5 menu-transition`}>
