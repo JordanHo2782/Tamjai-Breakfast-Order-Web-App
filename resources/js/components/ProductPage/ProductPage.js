@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom"
 import Navbar from "../Navbar/Navbar"
 import CustomizeMenu from "../CustomizeMenu/CustomizeMenu"
-
 import ProductDescriptionsContainer from "../ProductDescriptionsContainer/ProductDescriptionsContainer";
 import CustomizeItemButtonContainer from "../CustomizeItemButtonContainer/CustomizeItemButtonContainer";
+import SubmitButton from "../SubmitButton/SubmitButton"
 
 export default function ProductPage(props) {
     const [CustomizeItemButtonClicked, setCustomizeItemButtonClicked] = useState(false)
@@ -43,6 +43,7 @@ export default function ProductPage(props) {
             (DataModified)=>{
                 setProductOptionsListNamesArray(DataModified[0]);
                 setProductOptionsArraysArray(DataModified[1]);
+
         })
     },[])
 
@@ -56,6 +57,17 @@ export default function ProductPage(props) {
     }
     const CalcAdditionalPrice = ()=>{
         return Object.keys(ItemsSelected).length===0?0:(Object.values(ItemsSelected).map((object)=>{return object.price_change})).reduce((a,b)=>{ return a+b });
+    }
+    const AddProductToCart = ()=>{
+        const CartItemsArray = JSON.parse(localStorage.getItem("CartItemsArray"))||[];// CartItemsArray in local storage does not exist, create one with empty array
+        CartItemsArray.push({ProductID, ProductTitle, ProductPrice, ProductPhotoLink, OptionsSelected: ItemsSelected});
+
+        //Find the array with the same productID,
+        //If the array with the same productID exist, modify the array quantity by 1
+        //else push new item
+
+        localStorage.setItem("CartItemsArray", JSON.stringify(CartItemsArray));
+        return true;
     }
 
     return (
@@ -93,11 +105,12 @@ export default function ProductPage(props) {
                         onCustomizeItemButtonClickedChange={(prevState)=>{                            
                             setCustomizeItemButtonClicked(prevState)}}/>            
                     </div>
-                    <div className="d-flex justify-content-center align-items-center">
-                        <button type="button" className="btn btn-outline-success addcart-btn" onClick={()=>{
-                            console.log(ItemsSelected)
-                        }}>ADD TO CART</button>
-                    </div>
+                    <SubmitButton Label={Object.keys(ItemsSelected).length===ProductOptionsArraysArray.length?"Add to cart":"You must choose the options"} BtnClasses={`btn addcart-btn ${Object.keys(ItemsSelected).length===ProductOptionsArraysArray.length?"btn-outline-success":"btn-outline-danger"}`} onClickChange={()=>{
+                        Object.keys(ItemsSelected).length===ProductOptionsArraysArray.length?
+                            AddProductToCart()
+                        :()=>{ 
+                            return false }
+                        }}/>
                 </div>
             </div>
 

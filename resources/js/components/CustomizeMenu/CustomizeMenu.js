@@ -43,8 +43,9 @@ export default function CustomizeMenu(props) {
                                 var OptionSelected = props.ItemsSelectedChanges[OptionsTapSelected]===undefined?false:props.ItemsSelectedChanges[OptionsTapSelected].english_name===Option.english_name;
                                 return (
                                     <div className="w-100 d-flex justify-content-between align-items-center product-menu-navbar cursor-pointer" onClick={()=>{
-                                            const NewItemsSelected = {...props.ItemsSelectedChanges, [OptionsTapSelected]:{english_name: Option.english_name, price_change: Option.price_change}};
+                                            const NewItemsSelected = {...props.ItemsSelectedChanges, [OptionsTapSelected]:{item_id: Option.item_id, english_name: Option.english_name, traditional_chinese_name:Option.traditional_chinese_name , price_change: Option.price_change}};
                                             props.onItemsSelectedChanges(NewItemsSelected);
+                                            console.log(NewItemsSelected)
                                             if(props.ProductOptionsArraysArray.indexOf(OptionArray)===props.ProductOptionsArraysArray.length-1){
                                                 props.onCustomizeItemButtonClickedChangeChange(false)
                                             }

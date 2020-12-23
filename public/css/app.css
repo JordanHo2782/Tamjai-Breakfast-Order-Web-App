@@ -11391,3 +11391,9 @@ body,
   height: min(6vmax, 60px);
 }
 
+.cart-dot {
+  width: 1.25rem;
+  height: 1.25rem;
+  bottom: 0.75rem;
+}
+
