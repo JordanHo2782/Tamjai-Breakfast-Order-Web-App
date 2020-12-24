@@ -26,7 +26,7 @@ export default function Mainpage() {
     const TraditionalChinese = new Word("Traditional Chinese", "繁體中文");
     const LanguageOptions = [English, TraditionalChinese];
 
-    const [Language, setLanguage] = useState(LanguageOptions[1]);
+    const [Language, setLanguage] = useState(LanguageOptions[0]);
     const [LanguageManualOpened, setLanguageManualOpened] = useState(false);
 
     const DineIn = new Word("Dine In", "堂食");
@@ -56,6 +56,7 @@ export default function Mainpage() {
         localStorage.setItem('Restaurant', Restaurant.EnglishWord)
         localStorage.setItem('DineLocation', DineLocation.EnglishWord)
         localStorage.setItem('SitNumber', SitNumber)
+        window.location.href = "/product-categories"
     }
 
     useEffect(()=>{
@@ -109,13 +110,6 @@ export default function Mainpage() {
             </div>
             <div className="h-100 w-100 position-absolute d-flex flex-column align-items-center z-index-2">
                 <div className="tamjailogo-size full-bg-image tamjailogo-bg-image"></div>
-                <ChangeSettingButton 
-                    Icon={faLanguage} 
-                    Label={new Word("Language", "語言").Translator(Language.EnglishWord)}
-                    OptionSelected={Language.Translator(Language.EnglishWord)}
-                    onChangeSettingButtonChange={()=>{
-                        setLanguageManualOpened(true)}}
-                />
                 <ChangeSettingButton
                     Icon={faLocationArrow} 
                     Label={new Word("Restaurant", "餐廳").Translator(Language.EnglishWord)}

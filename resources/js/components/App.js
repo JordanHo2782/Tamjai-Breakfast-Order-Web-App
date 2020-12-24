@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Switch, Route, useParams } from "react-router-dom";
 
 import Mainpage from "./Mainpage/Mainpage"
-import ShoppingPage from "./ShoppingPage/ShoppingPage"
 import ProductPage from "./ProductPage/ProductPage"
 
 import ProductCategoriesPage from "./ProductCategoriesPage/ProductCategoriesPage"

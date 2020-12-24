@@ -4,12 +4,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\RestaurantController;
-
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductOptionsController;
 use App\Http\Controllers\ProductDescriptionsController;
 use App\Http\Controllers\ProductCategoriesController;
 use App\Http\Controllers\ImagesController;
+
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -32,6 +33,3 @@ Route::get('get/product_options/{category_id}/{product_id}', [ProductOptionsCont
 Route::get('get/product/{category_id}', [ProductController::class, 'show_by_category_id']);
 Route::get('get/categories', [ProductCategoriesController::class, 'index']);
 Route::get('get/image/{image_name}', [ImagesController::class, 'show_by_image_name']);
-
-
-
