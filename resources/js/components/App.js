@@ -7,27 +7,32 @@ import ProductPage from "./ProductPage/ProductPage"
 
 import ProductCategoriesPage from "./ProductCategoriesPage/ProductCategoriesPage"
 import CartPage from './CartPage/CartPage';
+import ErrorPage from "./ErrorPage/ErrorPage";
 
 export default function App() {
 
     return (
         <Router>
             <Switch>
-                <Route path="/product-categories/:CategoryID/:ProductID">
+                <Route exact path="/product-categories/:CategoryID/:ProductID">
                     <ProductPage/>
                 </Route>
-                <Route path="/product-categories/:CategoryID">
+                <Route exact path="/product-categories/:CategoryID">
                     <ProductCategoriesPage/>
                 </Route>
-                <Route path="/product-categories/">
+                <Route exact path="/product-categories/">
                     <ProductCategoriesPage/>
                 </Route>
-                <Route path="/cart">
+                <Route exact path="/cart">
                     <CartPage/>
                 </Route>
-                <Route path="/">
+                <Route exact path="/">
                     <Mainpage/>
                 </Route>
+                <Route>
+                    <ErrorPage/>
+                </Route>   
+
             </Switch>
         </Router>
     )

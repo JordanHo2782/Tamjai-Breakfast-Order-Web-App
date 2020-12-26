@@ -1,6 +1,8 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,8 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Auth::routes();
+
 Route::get('{reactRoutes}', function () {
-    return view('welcome'); // your start view
-})->where('reactRoutes', '^((?!api).)*$');
+    return view('welcome');
+})->where('reactRoutes', '^((?!api|login|register).)*$');
 
 

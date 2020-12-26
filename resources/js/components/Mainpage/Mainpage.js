@@ -36,7 +36,9 @@ export default function Mainpage() {
     const [DineLocationManualOpened, setDineLocationManualOpened] = useState(false);
 
     const [RestaurantOptions, setRestaurantOptions] = useState([new Word('Jaffe Road, Causeway Bay','銅鑼灣謝斐道')])
+    
     const [Restaurant, setRestaurant] = useState(RestaurantOptions[0]);
+    const [RestaurantID, setRestaurantID] = useState(1);
     const [RestaurantManualOpened, setRestaurantManualOpened] = useState(false);
 
     const [SitNumberArray, setSitNumberArray] = useState([44])
@@ -51,11 +53,13 @@ export default function Mainpage() {
     }
     
     const onStartOrder = ()=>{
-        localStorage.clear();
-        localStorage.setItem('Language', Language.EnglishWord);
-        localStorage.setItem('Restaurant', Restaurant.EnglishWord)
-        localStorage.setItem('DineLocation', DineLocation.EnglishWord)
-        localStorage.setItem('SitNumber', SitNumber)
+        const TamjaiYunnanMixianOrderInfo = JSON.stringify({
+            restaurant_name: Restaurant.EnglishWord,
+            restaurant_id: RestaurantID,
+            dine_location: DineLocation.EnglishWord,
+            sit_number: SitNumber,
+        })
+        localStorage.setItem('TamjaiYunnanMixianOrderInfo', TamjaiYunnanMixianOrderInfo)
         window.location.href = "/product-categories"
     }
 
@@ -65,7 +69,7 @@ export default function Mainpage() {
             const NewRestaurantOptions = RestaurantObjectsFetched.map((RestaurantObject)=>{
                 return new Word(RestaurantObject.english_name, RestaurantObject.traditional_chinese_name);
             });
-            setRestaurantOptions(NewRestaurantOptions);//RestaurantOptions
+            setRestaurantOptions(NewRestaurantOptions);
             SitNumberArray.pop();
             RestaurantObjectsFetched.map((RestaurantObject)=>{
                 SitNumberArray.push(RestaurantObject.sit_number)
@@ -92,9 +96,10 @@ export default function Mainpage() {
                     var d = R * c;
                     return d; //distance in km
                 })
-                const RestaurantID = DistancesArray.indexOf(Math.min.apply(null, DistancesArray))
-                setSitNumberOptions(Array.from({length: SitNumberArray[RestaurantID]}, (v, i) => i+1))
-                setRestaurant(NewRestaurantOptions[RestaurantID])
+                const RestaurantIndex = DistancesArray.indexOf(Math.min.apply(null, DistancesArray))
+                setSitNumberOptions(Array.from({length: SitNumberArray[RestaurantIndex]}, (v, i) => i+1))
+                setRestaurant(NewRestaurantOptions[RestaurantIndex])
+                setRestaurantID(RestaurantIndex+1)
             }
             const onGetCurrentLocationFailure = ()=>{
                 setSitNumberOptions(Array.from({length: 44}, (v, i) => i+1))
@@ -112,21 +117,21 @@ export default function Mainpage() {
                 <div className="tamjailogo-size full-bg-image tamjailogo-bg-image"></div>
                 <ChangeSettingButton
                     Icon={faLocationArrow} 
-                    Label={new Word("Restaurant", "餐廳").Translator(Language.EnglishWord)}
+                    Label={"Restaurant"}
                     OptionSelected={Restaurant.Translator(Language.EnglishWord)}
                     onChangeSettingButtonChange={()=>{
                         setRestaurantManualOpened(true)
                 }}/>
                 <ChangeSettingButton
                     Icon={faUtensils} 
-                    Label={new Word("Dine Location", "用餐地點").Translator(Language.EnglishWord)}
+                    Label={"Dine Location"}
                     OptionSelected={DineLocation.Translator(Language.EnglishWord)}
                     onChangeSettingButtonChange={()=>{
                         setDineLocationManualOpened(true)
                 }}/>
                 <ChangeSettingButton
                     Icon={faChair} 
-                    Label={new Word("Sit Number", "枱號").Translator(Language.EnglishWord)}
+                    Label={"Sit Number"}
                     OptionSelected={SitNumber}
                     onChangeSettingButtonChange={()=>{
                         setSitNumberManualOpened(true)}}
@@ -136,11 +141,11 @@ export default function Mainpage() {
                     type="button" 
                     className="btn btn-outline-primary my-5 d-flex justify-content-between align-items-center"
                     onClick={onStartOrder}>
-                    {Language.EnglishWord==="English"?"Start Order":"開始點餐"}
+                    {"Start Order"}
                 </button>
             </div>
             <div className={`w-100 position-absolute justify-content-center align-items-center bg-dark z-index-3 opacity-5 d-flex menu-transition ${LanguageManualOpened||DineLocationManualOpened||RestaurantManualOpened||SitNumberManaulOpened?"menu-opened-margin":"menu-closed-margin"}`}/>
-            <ChangeSettingManual
+            {/* <ChangeSettingManual
                 Label={new Word("Language", "語言").Translator(Language.EnglishWord)}
                 Options={LanguageOptions.map((Option)=>{
                     return Option.Translator(Language.EnglishWord)
@@ -154,9 +159,9 @@ export default function Mainpage() {
                 }}
                 ManualOpened={LanguageManualOpened}
                 SearchLabel={Language.EnglishWord==="English"?"Search Here":"在此搜尋"}
-            />
+            /> */}
             <ChangeSettingManual
-                Label={new Word("Restaurant", "餐廳").Translator(Language.EnglishWord)}
+                Label={"Restaurant"}
                 Options={
                     RestaurantOptions.map((Option)=>{
                         return Option.Translator(Language.EnglishWord)
@@ -174,10 +179,10 @@ export default function Mainpage() {
                     setRestaurantManualOpened(false);
                 }}
                 ManualOpened={RestaurantManualOpened}
-                SearchLabel={Language.EnglishWord==="English"?"Search Here":"在此搜尋"}
+                SearchLabel={"Search Here"}
             />
             <ChangeSettingManual
-                Label={new Word("Dine Location", "用餐地點").Translator(Language.EnglishWord)}
+                Label={"Dine Location"}
                 Options={
                     DineLocationOptions.map((Option)=>{
                         return Option.Translator(Language.EnglishWord)
@@ -191,11 +196,11 @@ export default function Mainpage() {
                     setDineLocationManualOpened(false);
                 }}
                 ManualOpened={DineLocationManualOpened}
-                SearchLabel={Language.EnglishWord==="English"?"Search Here":"在此搜尋"}
+                SearchLabel={"Search Here"}
             />
 
             <ChangeSettingManual
-                Label={new Word("Sit Number", "枱號").Translator(Language.EnglishWord)}
+                Label={"Sit Number"}
                 Options={SitNumberOptions}
                 OptionSelected={SitNumber}
                 onSettingChange={(newOptionPropertySelected)=>{
@@ -203,7 +208,7 @@ export default function Mainpage() {
                     setSitNumberManualOpened(false);
                 }}
                 ManualOpened={SitNumberManaulOpened}
-                SearchLabel={Language.EnglishWord==="English"?"Search Here":"在此搜尋"}
+                SearchLabel={"Search Here"}
             />
         </div>
     )

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>譚仔雲南米線在此落單</title> 
+        <title>Tamjai Yunnan Mixian Order Here</title> 
 
         <style>
         </style>

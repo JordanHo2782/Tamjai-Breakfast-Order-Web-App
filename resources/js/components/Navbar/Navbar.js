@@ -4,7 +4,6 @@ import SearchInputDesktop from "../SearchInputDesktop/SearchInputDesktop"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faShoppingCart, faSearch, fas } from '@fortawesome/free-solid-svg-icons'
 
-
 export default function Navbar(props) {
 
     const History = useHistory();
@@ -14,12 +13,15 @@ export default function Navbar(props) {
                 <FontAwesomeIcon className="navbar-icon cursor-pointer" icon={faArrowLeft} aria-label="Go to previous page" onClick={()=>{
                     History.goBack();
                 }}/>
-                <div className="tamjailogo-size m-auto full-bg-image tamjailogo-bg-image"></div>
+                <div className="tamjailogo-size m-auto full-bg-image tamjailogo-bg-image cursor-pointer"
+                    onClick={()=>{
+                        window.location.href="/"
+                    }}/>
                 <div className="w-auto d-flex flex-row justify-content-around align-items-center">
                     <FontAwesomeIcon className={`navbar-icon navbar-mobile-display cursor-pointer ${!!props.DisableSearch?"d-none":""}`} icon={faSearch} onClick={()=>{
                         props.onSearchButtonClickedChange(props.SearchButtonClickedChange)
                     }}/>
-
+                    
                     <SearchInputDesktop DisableSearch={!!props.DisableSearch} onSearchBarInputChange={(newState)=>{props.onSearchBarInputChange(newState)}}/>
                     <FontAwesomeIcon className={`navbar-icon cursor-pointer ${!!props.DisableCart?"d-none":""}`} icon={faShoppingCart} onClick={()=>{
                         window.location.href="/cart"
