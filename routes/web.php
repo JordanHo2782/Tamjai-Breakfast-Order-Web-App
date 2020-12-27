@@ -15,11 +15,16 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Auth::routes();
+Route::prefix('terminal')->group( function(){
+    Route::get('/', function(){
+        return redirect('/terminal/home');
+    });
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Auth::routes();
+});
 
 Route::get('{reactRoutes}', function () {
     return view('welcome');
-})->where('reactRoutes', '^((?!api|login|register).)*$');
+})->where('reactRoutes', '^((?!api|terminal).)*$');
 
 
