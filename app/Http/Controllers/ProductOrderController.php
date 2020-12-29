@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Order;
+use App\Models\ProductOrder;
 use Illuminate\Support\Str;
 
-class OrderController extends Controller
+class ProductOrderController extends Controller
 {
     public function index(){
         return Order::all();
@@ -17,7 +17,7 @@ class OrderController extends Controller
 
         $order_identifier = Str::uuid();
         foreach($cart_items as &$item) {
-            $order = new Order;
+            $order = new ProductOrder;
             $order->restaurant_id = $request->restaurant_id;
             $order->restaurant_name = $request->restaurant_name;
             $order->dine_location = $request->dine_location;

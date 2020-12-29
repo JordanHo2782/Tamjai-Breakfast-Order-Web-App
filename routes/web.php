@@ -3,6 +3,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,10 @@ use App\Http\Controllers\HomeController;
 
 Route::prefix('terminal')->group( function(){
     Route::get('/', function(){
-        return redirect('/terminal/home');
+        if(DB::connection()->getDatabaseName()){
+            echo "Connected to database ".DB::connection()->getDatabaseName();
+        }
+        //return redirect('/terminal/home');
     });
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Auth::routes();

@@ -10,7 +10,7 @@ use App\Http\Controllers\ProductDescriptionsController;
 use App\Http\Controllers\ProductCategoriesController;
 use App\Http\Controllers\ImagesController;
 
-use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductOrderController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -34,5 +34,5 @@ Route::get('get/product/{category_id}', [ProductController::class, 'show_by_cate
 Route::get('get/categories', [ProductCategoriesController::class, 'index']);
 Route::get('get/image/{image_name}', [ImagesController::class, 'show_by_image_name']);
 
-Route::get('get/order', [OrderController::class, 'index'])->middleware('auth');
-Route::post('post/order', [OrderController::class, 'store']);
+Route::get('get/order', [ProductOrderController::class, 'index'])->middleware('auth');
+Route::post('post/order', [ProductOrderController::class, 'store']);
