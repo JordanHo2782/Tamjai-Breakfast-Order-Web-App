@@ -31,4 +31,4 @@ Go to [website hosted by AWS Elastic Beanstalk](http://tamjaibreakfastorderwebap
 4. View the product, and click Place order to confirm
 
 ![Terminal](https://github.com/JordanHo2782/Tamjai-Breakfast-Order-Web-App/blob/master/screenshots/Terminal.png)
-4. This is the terminal page for waiters viewing order
+4. This is the terminal page for waiters viewing orders
