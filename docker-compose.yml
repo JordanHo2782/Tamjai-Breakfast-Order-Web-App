@@ -9,12 +9,13 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: ebdb
     ports: 
-        - 3306:3306
+        - 3307:3306
     networks: 
       - tamjai-breakfast-order-web-app-network
-    volumes: 
-      - data-volume:/var/lib/mysql
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    # volumes: 
+      # - ./init.sql:/drdocker-entrypoint-initdb.d/init.sql
+    cap_add:
+      - SYS_NICE
   web:
     # image: tamjai-breakfast-order-web-app
     ports: 
@@ -25,9 +26,6 @@ services:
     networks: 
       - tamjai-breakfast-order-web-app-network
     build: ./
-    # volumes: 
-    # environment: 
-    # ports: "3306:3306"
 networks: 
   tamjai-breakfast-order-web-app-network:
     driver: bridge

@@ -20,14 +20,14 @@ RUN cd ~ &&\
 
 ADD . .
 
-RUN ls &&\
-    composer update &&\
+RUN composer update &&\
     composer install &&\
     npm install &&\
     npm run dev &&\
     chmod -R 777 . &&\
     php artisan config:clear &&\
     php artisan cache:clear &&\
-    php artisan key:generate 
-CMD php artisan serve --host=0.0.0.0
+    php artisan key:generate
+    
+CMD bash -c "./wait-for-it.sh db:3306 --timeout=600 --strict -- php artisan migrate && php artisan serve --host=0.0.0.0"
 
