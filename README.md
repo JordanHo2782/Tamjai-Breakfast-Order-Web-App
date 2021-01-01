@@ -13,7 +13,7 @@ OR
 Go to [website hosted by AWS Elastic Beanstalk](http://tamjaibreakfastorderwebapp-env.eba-cmzeizih.us-east-2.elasticbeanstalk.com/)
 
 ## Usage
-[Frontpage](https://github.com/JordanHo2782/Tamjai-Breakfast-Order-Web-App/blob/master/screenshots/frontpage.png)
+![Front](https://github.com/JordanHo2782/Tamjai-Breakfast-Order-Web-App/blob/master/screenshots/front.png)
 1. Change the resturant location, sit number and dine location, then click start order
 
 
