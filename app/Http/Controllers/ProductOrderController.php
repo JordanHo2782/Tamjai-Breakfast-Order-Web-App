@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 class ProductOrderController extends Controller
 {
     public function index(){
-        return Order::all();
+        return ProductOrder::all();
     }
 
     public function store(Request $request){
