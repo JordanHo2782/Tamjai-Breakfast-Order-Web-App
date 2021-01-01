@@ -13,9 +13,19 @@ OR
 Go to [website hosted by AWS Elastic Beanstalk](http://tamjaibreakfastorderwebapp-env.eba-cmzeizih.us-east-2.elasticbeanstalk.com/)
 
 ## Usage
-![](/home/jordan/Pictures/frontpage.png)
-![Alt text](/home/jordan/Pictures/page1.png)
-![Alt text](/home/jordan/Pictures/page2.png)
-![Alt text](/home/jordan/Pictures/page3.png)
-![Alt text](/home/jordan/Pictures/page4.png)
-![Alt text](/home/jordan/Pictures/page5.png)
+[Frontpage](https://github.com/JordanHo2782/Tamjai-Breakfast-Order-Web-App/blob/master/screenshots/frontpage.png)
+1. Change the resturant location, sit number and dine location, then click start order
+
+
+![Page 2](https://github.com/JordanHo2782/Tamjai-Breakfast-Order-Web-App/blob/master/screenshots/page2.png)
+![Page 3](https://github.com/JordanHo2782/Tamjai-Breakfast-Order-Web-App/blob/master/screenshots/page3.png)
+2. Click the paper for category and products
+
+
+![Page 4](https://github.com/JordanHo2782/Tamjai-Breakfast-Order-Web-App/blob/master/screenshots/page4.png)
+![Page 5](https://github.com/JordanHo2782/Tamjai-Breakfast-Order-Web-App/blob/master/screenshots/page5.png)
+3. Click the button to opened up menu for product customization, and go to the shopping cart at the top right
+
+
+![Page 6](https://github.com/JordanHo2782/Tamjai-Breakfast-Order-Web-App/blob/master/screenshots/page6.png)
+4. View the product, and click Place order to confirm
